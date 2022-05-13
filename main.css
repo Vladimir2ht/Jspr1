@@ -9,15 +9,20 @@ body {
 	background-color: White;
 	margin: 30px;
 	padding: 20px; 
-
+	min-width: 700px;
 }
+
+h3 {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	}
 
 .header {
 	border-left: 4px solid Gainsboro;
 	background-color: #eeeef1;
 	color: #9696a0;
-	padding-bottom: 1px;
-	padding-top: 1px;
+	padding-left: 20px;
+	margin: 30px;
 }
 
 .theader {
@@ -28,12 +33,13 @@ body {
 }
 
 .panelelement{
-display: inline-block;
+	display: inline-block;
+	white-space: nowrap;
 }
 
 #panel {
 	margin: 8px;
-		
+	min-width: 680px;
 }
 
 button {
@@ -55,6 +61,12 @@ table{
 
 td {
 	padding: 15px;
-	width:25%;
-	
+}
+
+.tdcomment {
+	width:46%;
+}
+
+.tdmid {
+	width:18%;
 }
