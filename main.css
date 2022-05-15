@@ -56,17 +56,34 @@ button {
 }
 
 table{
-  width:100%;
+	width:100%;
+}
+
+tbody {
+	font-weight: normal;
+	font-size: 15px;
 }
 
 td {
 	padding: 15px;
 }
 
-.tdcomment {
-	width:46%;
+.right {
+	float: right;
+	position: relative;
+	bottom: 15px;
+	
 }
 
-.tdmid {
+.tdcomment {
+	width:49%;
+}
+
+.tdate {
 	width:18%;
+}
+
+.tablebutton {
+	float: right;
+	margin-left: 6px;
 }

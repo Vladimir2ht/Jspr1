@@ -1,6 +1,6 @@
 "use strict";
 const serverURL = "http://localhost:3000/invoices";
-
+// Есть более современный вариант
 function send_request( method, url , body = null ){
   return new Promise((resolve, reject) => {
 	let xhr = new XMLHttpRequest();
@@ -119,15 +119,28 @@ let invoices =[
   }
 ]
 
-function tablecreator(arr) {
+function tablecreator(arr_of_dokuments) {
   let listofdoc = document.querySelector('tbody');
   let colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
-  for (let number in arr){
+  for (let number in arr_of_dokuments){
 	let line = document.createElement('tr');
+	
+	// Переделать по DRY
 	for (let i of colomns){
 	  let sell = document.createElement('td');
-	  sell.innerHTML = (arr[number])[i];
+	  sell.innerHTML = (arr_of_dokuments[number])[i];
 
+	  if (i == 'comment'){
+		let tbuton = document.createElement('button');
+		tbuton.innerHTML = 'edit';
+		tbuton.classList.add("tablebutton");
+		sell.prepend(tbuton);
+		tbuton = document.createElement('button');
+		tbuton.innerHTML = 'Delete';
+		tbuton.style.backgroundColor = "red";
+		tbuton.classList.add("tablebutton");
+		sell.prepend(tbuton);
+	  }
 	  line.append(sell);
 	}
 	
