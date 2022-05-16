@@ -26,45 +26,6 @@ function send_request( method, url , body = null ){
 })
 }
 
-// Формирование строки запроса, НЕПОНЯТНО, УПРОСТИТЬ! Зато максимально быстро.
-function sort_and_serch(){
-  let selects = document.querySelectorAll('select'); // document.forms не работает
-  let request_string;
-  var serch_object = document.querySelector('input');
-  if (serch_object.value !== '') {
-	if (selects[2].selectedIndex == 0) {
-	  if (selects[1].selectedIndex != 0) {
-		request_string = `?_sort=${colomns[selects[0].selectedIndex]
-		}&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'
-		}&q=${serch_object.value}`;
-	  } else {
-		request_string = `?q=${serch_object.value}`;
-	  }
-	} else {
-	  if (selects[1].selectedIndex != 0) {
-		request_string = `?${colomns[selects[2].selectedIndex - 1]}_like=${
-		serch_object.value}&_sort=${colomns[selects[0].selectedIndex]
-		}&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'}`;
-	  } else {
-		request_string = `?${colomns[selects[2].selectedIndex - 1]}_like=${serch_object.value}`;
-	  } 
-	}
-  } else {
-	if (selects[1].selectedIndex != 0) {
-	  request_string = `?_sort=${colomns[selects[0].selectedIndex]
-	  }&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'}`;
-	}
-  }
-  console.log(request_string);
-  
-  send_request('GET', serverURL, request_string)
-	.then(data => tablecreator(data))  
-}
-
-
-
-  
-
 send_request('GET', serverURL,)
 	.then(data => tablecreator(data))
 
@@ -193,5 +154,4 @@ function tablecreator(arr_of_dokuments) {
 }
 
 // tablecreator(invoices);
-
 
