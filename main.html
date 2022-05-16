@@ -20,28 +20,35 @@
    <div id="panel">
 	<div class="panelelement" style="width: 32%">
 	 Order by:
-	 <select class="panelelement" style="width: 35%">
-	  <option>Пункт 1</option>
-	  <option>Пункт 2</option> 
+	 <select class="panelelement" style="width: 35%" onchange="sort_and_serch()">
+	  <option>Creation date</option>
+	  <option>№</option>
+	  <option>Supply date</option> 
+	  <option>Comment</option>  
 	 </select>
-	 <select class="panelelement" style="width: 24%">
+	 <select class="panelelement" style="width: 24%" onchange="sort_and_serch()">
+	  <option>Non</option> 
 	  <option>Asc</option>
-	  <option>Desc</option> 
+	  <option>Desc</option>
 	 </select>
 	</div>
 	
 	<div class="panelelement" style="width: 25%">
 	Filter by:
 	 <select class="panelelement" style="width: 60%">
-	  <option>Пункт 1</option>
-	  <option>Пункт 2</option> 
+	  <option>All</option>
+	  <<option>Creation date</option>
+	  <option>№</option>
+	  <option>Supply date</option> 
+	  <option>Comment</option>
 	 </select>
 	</div>
 	
 	
 	<div class="panelelement right" style="width: 40%" align="center">Search:
 	 <input class="panelelement" style="width: 60%">
-	 <button class="panelelement" style="width: 45px">Go</button>
+	 <button class="panelelement" style="width: 45px" onclick="sort_and_serch()">
+	 Go</button>
 	</div>
    </div>
    

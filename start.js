@@ -1,31 +1,74 @@
 "use strict";
-const serverURL = "http://localhost:3000/invoices";
+let serverURL = "http://localhost:3000/invoices";
+let colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
+
 // Есть более современный вариант
 function send_request( method, url , body = null ){
   return new Promise((resolve, reject) => {
 	let xhr = new XMLHttpRequest();
-	xhr.open( method, url );
+	if (body) {
+	  xhr.open( method, url + body);
+	} else {
+	  xhr.open( method, url );
+	};
 	xhr.responseType = 'json';
-
 	xhr.onload = () => {
-		if (xhr.status < 400 ) {
+	  if (xhr.status < 400 ) {
 		resolve(xhr.response);
-		} else {
+	  } else {
 		reject(xhr.response);
-		}
-  }
-xhr.onerror = () => {
-reject(xhr.response);
-};
-xhr.send();
+	  }
+	}
+	xhr.onerror = () => {
+	  reject(xhr.response);
+	};
+  xhr.send();
 })
 }
 
+// Формирование строки запроса, НЕПОНЯТНО, УПРОСТИТЬ! Зато максимально быстро.
+function sort_and_serch(){
+  let selects = document.querySelectorAll('select'); // document.forms не работает
+  let request_string;
+  var serch_object = document.querySelector('input');
+  if (serch_object.value !== '') {
+	if (selects[2].selectedIndex == 0) {
+	  if (selects[1].selectedIndex != 0) {
+		request_string = `?_sort=${colomns[selects[0].selectedIndex]
+		}&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'
+		}&q=${serch_object.value}`;
+	  } else {
+		request_string = `?q=${serch_object.value}`;
+	  }
+	} else {
+	  if (selects[1].selectedIndex != 0) {
+		request_string = `?${colomns[selects[2].selectedIndex - 1]}_like=${
+		serch_object.value}&_sort=${colomns[selects[0].selectedIndex]
+		}&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'}`;
+	  } else {
+		request_string = `?${colomns[selects[2].selectedIndex - 1]}_like=${serch_object.value}`;
+	  } 
+	}
+  } else {
+	if (selects[1].selectedIndex != 0) {
+	  request_string = `?_sort=${colomns[selects[0].selectedIndex]
+	  }&_order=${(selects[1].selectedIndex == 1) ? 'asc' : 'desc'}`;
+	}
+  }
+  console.log(request_string);
+  
+  send_request('GET', serverURL, request_string)
+	.then(data => tablecreator(data))  
+}
+
+
+
   
 
-// send_request('GET', serverURL,{})
-	// .then(data => tablecreator(data))
+send_request('GET', serverURL,)
+	.then(data => tablecreator(data))
 
+// Удалить БД
 let invoices =[
   {
     "id": "5ac1f09a60edb54701c767da",
@@ -121,7 +164,9 @@ let invoices =[
 
 function tablecreator(arr_of_dokuments) {
   let listofdoc = document.querySelector('tbody');
-  let colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
+  
+  // Можно сделать автогенерацию колонок по задающимся параметрам
+  
   for (let number in arr_of_dokuments){
 	let line = document.createElement('tr');
 	
@@ -132,7 +177,7 @@ function tablecreator(arr_of_dokuments) {
 
 	  if (i == 'comment'){
 		let tbuton = document.createElement('button');
-		tbuton.innerHTML = 'edit';
+		tbuton.innerHTML = 'Edit';
 		tbuton.classList.add("tablebutton");
 		sell.prepend(tbuton);
 		tbuton = document.createElement('button');
@@ -143,12 +188,10 @@ function tablecreator(arr_of_dokuments) {
 	  }
 	  line.append(sell);
 	}
-	
 	listofdoc.append(line);
  } 	
-		
 }
 
-tablecreator(invoices);
+// tablecreator(invoices);
 
 
