@@ -1,17 +1,18 @@
 "use strict";
-let serverURL = "http://localhost:3000/invoices";
 let colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
 
 // Есть более современный вариант
-function send_request( method, url , body = null ){
+function send_request( method, body = null, poust = null ){
   return new Promise((resolve, reject) => {
 	let xhr = new XMLHttpRequest();
+	let url = "http://localhost:3000/invoices";
 	if (body) {
 	  xhr.open( method, url + body);
 	} else {
 	  xhr.open( method, url );
 	};
 	xhr.responseType = 'json';
+	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () => {
 	  if (xhr.status < 400 ) {
 		resolve(xhr.response);
@@ -22,11 +23,11 @@ function send_request( method, url , body = null ){
 	xhr.onerror = () => {
 	  reject(xhr.response);
 	};
-  xhr.send();
+  xhr.send(JSON.stringify(poust));
 })
 }
 
-send_request('GET', serverURL,)
+send_request('GET')
 	.then(data => tablecreator(data))
 
 // Удалить БД

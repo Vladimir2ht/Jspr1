@@ -43,7 +43,7 @@ function sort_and_serch(){
 	}
   }
   tabledeletor();
-  send_request('GET', serverURL, request_string)
+  send_request('GET', request_string)
 	.then(data => tablecreator(data))  
 }
 
