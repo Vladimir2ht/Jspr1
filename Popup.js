@@ -33,7 +33,7 @@ function Post_request(event) {
   event.preventDefault();
   var form_data = new FormData(forom);
   let doc_info = Object.fromEntries(form_data.entries());
-  console.log(doc_info);
   send_request('POST', null ,doc_info)	
   Close_popup();
+  
 }
