@@ -68,9 +68,7 @@ td {
 	padding: 15px;
 	vertical-align: top;
 	word-wrap: break-word;
-	/* -webkit-hyphens: auto; */
-	/* -ms-hyphens: auto; */
-	/* hyphens: auto; */
+	max-width: 0px; /* для нормальной работы таблицы с длинными словами*/
 
 }
 

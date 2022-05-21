@@ -44,7 +44,7 @@ function Table_creator(arr_of_dokuments) {
 	  
 	  if (i == 'comment'){
 		let tbuton = document.createElement('button');
-		sell.setAttribute('style', 'max-width: 100px'); // Как и почему это работает?
+
 		tbuton.innerHTML = 'Edit';
 		tbuton.classList.add("tablebutton");
 		tbuton.setAttribute('onclick', `Open_popup("/${(arr_of_dokuments[number])["id"]}")`);
@@ -66,6 +66,6 @@ function Table_creator(arr_of_dokuments) {
 
 function Asc_delation(id_delate) {
   Send_request("DELETE", id_delate, null,);
-  Sort_and_serch(); //Почему-то не работает?
+  Sort_and_serch(); //кажется не успевает
 }
 
