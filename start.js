@@ -1,19 +1,21 @@
 "use strict";
-let colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
+
+Send_request('GET')
+	.then(data => Table_creator(data))
 
 // Есть более современный вариант
-function send_request( method, body = null, poust = null ){
+function Send_request( method, body = null, poust = null ){
+  const url = "http://localhost:3000/invoices";
   
   return new Promise((resolve, reject) => {
 	let xhr = new XMLHttpRequest();
-	let url = "http://localhost:3000/invoices";
 	if (body) {
 	  xhr.open( method, url + body);
 	} else {
 	  xhr.open( method, url );
 	};
 	xhr.responseType = 'json';
-	(method == "POST") ? xhr.setRequestHeader('Content-Type', 'application/json') : null;
+	(method == "POST" || method == "PATCH") ? xhr.setRequestHeader('Content-Type', 'application/json') : null;
 	xhr.onload = () => {
 	  if (xhr.status < 400 ) {
 		resolve(xhr.response);
@@ -28,14 +30,10 @@ function send_request( method, body = null, poust = null ){
 })
 }
 
-send_request('GET')
-	.then(data => tablecreator(data))
+const colomns = [ 'date_created', 'number', 'date_supply', 'comment', ];
+const list_of_doc = document.querySelector('tbody');
 
-function tablecreator(arr_of_dokuments) {
-  let listofdoc = document.querySelector('tbody');
-  
-  // Можно сделать автогенерацию колонок по задающимся параметрам
-  
+function Table_creator(arr_of_dokuments) {
   for (let number in arr_of_dokuments){
 	let line = document.createElement('tr');
 	
@@ -48,11 +46,12 @@ function tablecreator(arr_of_dokuments) {
 		let tbuton = document.createElement('button');
 		tbuton.innerHTML = 'Edit';
 		tbuton.classList.add("tablebutton");
+		tbuton.setAttribute('onclick', `Open_popup("/${(arr_of_dokuments[number])["id"]}")`);
 		sell.prepend(tbuton);
 		tbuton = document.createElement('button');
 		tbuton.innerHTML = 'Delete';
 		
-		tbuton.setAttribute('onclick', `send_request("DELETE", "/${(arr_of_dokuments[number])["id"]}")`);
+		tbuton.setAttribute('onclick', `Asc_delation("/${(arr_of_dokuments[number])["id"]}")`);
 		
 		tbuton.style.backgroundColor = "red";
 		tbuton.classList.add("tablebutton");
@@ -60,15 +59,12 @@ function tablecreator(arr_of_dokuments) {
 	  }
 	  line.append(sell);
 	}
-	listofdoc.append(line);
+	list_of_doc.append(line);
  } 	
 }
 
-function Button( method, body = null, poust = null ) {
-  
-  
-  sort_and_serch()
-  
-    
+function Asc_delation(id_delate) {
+  Send_request("DELETE", id_delate, null,);
+  Sort_and_serch();
 }
 

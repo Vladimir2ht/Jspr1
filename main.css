@@ -66,6 +66,7 @@ tbody {
 
 td {
 	padding: 15px;
+	/* vertical-align: middle; */
 }
 
 .right {
@@ -89,12 +90,18 @@ td {
 .tablebutton {
 	float: right;
 	margin-left: 6px;
+	margin-top: 0px;
 }
 
 .formfeald {
 	width: 92%;
 	margin-bottom: 30px;
 	margin-top: 10px;
+	
+}
+
+input::placeholder{
+	color: #aaaaad;
 }
 
 #popup_body {
@@ -132,5 +139,22 @@ textarea {
 	margin-top: 10px;
 	overflow-y: hidden;
 }
-
-
+@media (max-width: 500px) {
+	#popup_font {
+	  padding: 1px;
+	  margin-right: 0%;
+	  margin-left: 0%;
+	  min-width: 290px;
+}
+	#popup_content {
+	  min-width: 250px;
+}
+	.mainelement {
+	  margin: 0px;
+	  padding: 5px; 
+	/* min-width: 700px; */
+}
+	.header {
+	  padding-left: 4px;
+	  margin: 4px;
+}
