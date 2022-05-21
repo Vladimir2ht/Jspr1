@@ -39,11 +39,11 @@ function Post_request(event) {
   let doc_info = Object.fromEntries(form_data.entries());
   if (id_inwork){
 	Send_request('PATCH', id_inwork, doc_info)	
-  } else { //Мжно и в строчку, так понятнее.
+  } else {    //Мжно и в строчку, так понятнее.
 	Send_request('POST', null, doc_info)	
   }
   Close_popup();
-  Sort_and_serch()
+  Sort_and_serch();
 }
 
 function Input_numbers(event) {
