@@ -1,9 +1,8 @@
 "use strict";
 
 const comment_area = document.getElementsByTagName("textarea")[0];
-
-  comment_area.setAttribute("style", "height:" + (comment_area.scrollHeight) + "px;");
-  comment_area.addEventListener("input", On_Input, false);
+comment_area.setAttribute("style", "height:" + (comment_area.scrollHeight) + "px;");
+comment_area.addEventListener("input", On_Input, false);
 
 function On_Input() {
   this.style.height = "auto";
@@ -35,24 +34,24 @@ function Post_request(event) {
   event.preventDefault();
     
   let form_data = new FormData(forom);
+  // Не получилось нормально отправить данные в виде FormData.
   // Да, до преобразований form_data выглядит как пустое.
   let doc_info = Object.fromEntries(form_data.entries());
   if (id_inwork){
-	Send_request('PATCH', id_inwork, doc_info)	
+	Send_request('PATCH', start_url + id_inwork, doc_info)	;
   } else {    //Мжно и в строчку, так понятнее.
-	Send_request('POST', null, doc_info)	
+	Send_request('POST', start_url, doc_info);	
   }
   Close_popup();
-  Sort_and_serch();
+  Sort_and_serch();//Работает не всегда? Может не успевать.
 }
 
 function Input_numbers(event) {
-  if ( event.key == 'Backspace' || event.key == 'Delete' 
-  || event.key == 'Tab' || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))){
+  if ( event.key == 'Backspace' || event.key == 'Delete' || event.key == 'Tab'
+    || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))){
   } else{
 	event.preventDefault();
-	cosole.log(event.key);
   };
-}// Разрешить удаление
+};
 
 
