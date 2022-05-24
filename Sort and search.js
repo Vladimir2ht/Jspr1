@@ -1,7 +1,7 @@
 "use strict";
-const serch_object = document.querySelector("input");
+// const serch_object = document.querySelector("input");
 
-serch_object.addEventListener("keydown", ({key}) => {
+serch_feeld.addEventListener("keydown", ({key}) => {
   if (key === "Enter"){   // Handle press
 	Sort_and_serch();
   } 
@@ -16,15 +16,15 @@ function Sort_and_serch(){
   const selects = document.querySelectorAll('select');
   let url = new URL(start_url);
   
-  if (serch_object.value !== '' && selects[2].selectedIndex != 0){
-	url.searchParams.append(`${colomns[selects[2].selectedIndex - 1]}` + '_like', serch_object.value)
+  if (serch_feeld.value !== '' && selects[2].selectedIndex != 0){
+	url.searchParams.append(`${colomns[selects[2].selectedIndex - 1]}` + '_like', serch_feeld.value)
 	}
   if (selects[1].selectedIndex != 0) {
 	url.searchParams.append('_sort', colomns[selects[0].selectedIndex]);
 	url.searchParams.append('_order', ((selects[1].selectedIndex == 1) ? 'asc' : 'desc'));
   }
-  if (serch_object.value !== '' && selects[2].selectedIndex == 0){
-    url.searchParams.append('q', serch_object.value);
+  if (serch_feeld.value !== '' && selects[2].selectedIndex == 0){
+    url.searchParams.append('q', serch_feeld.value);
   }
   
   Table_deletor();

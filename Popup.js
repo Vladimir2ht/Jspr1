@@ -10,14 +10,14 @@ function On_Input() {
 }
 
 const pop_head = document.querySelector("h4");
-let id_inwork
+let id_in_work
 
 function Open_popup(id_patch = null) {
   (id_patch) ? pop_head.innerHTML = 'Edit Invoice' : pop_head.innerHTML = 'Create Invoice';
-    
+  // id_in_work = null;
   popup_body.style.display = "block";
   comment_area.setAttribute("style", "height:" + "40px;");
-  id_inwork = id_patch;
+  id_in_work = id_patch;
   popup_body.addEventListener("click", function (click){
 	if (!click.target.closest('#popup_font')) {
 	  Close_popup();
@@ -37,13 +37,20 @@ function Post_request(event) {
   // Не получилось нормально отправить данные в виде FormData.
   // Да, до преобразований form_data выглядит как пустое.
   let doc_info = Object.fromEntries(form_data.entries());
-  if (id_inwork){
-	Send_request('PATCH', start_url + id_inwork, doc_info)	;
-  } else {    //Мжно и в строчку, так понятнее.
-	Send_request('POST', start_url, doc_info);	
+  let form_method;
+  // Можно обойтись без новой переменной. Переприсваивание form_data
+  // при далнейшей работе могло бы привести к запутыванию
+  if (id_in_work) {
+	form_method = 'PATCH';
+	id_in_work = start_url + id_in_work;
+  } else {
+	form_method = 'POST';
+	id_in_work = start_url;
   }
+  Send_request(form_method, id_in_work, doc_info);	
+	//Sort не всегда срабатывает, и при такой записи, и B then.
+  Sort_and_serch();
   Close_popup();
-  Sort_and_serch();//Работает не всегда? Может не успевать.
 }
 
 function Input_numbers(event) {

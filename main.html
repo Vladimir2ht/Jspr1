@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="main.css" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -20,13 +21,13 @@
    <div id="panel">
 	<div class="panelelement" style="width: 32%">
 	 Order by:
-	 <select class="panelelement" style="width: 35%" onchange="Need_sort()">
+	 <select id="sort_where" class="inpanel" onchange="Need_sort()">
 	  <option>Creation date</option>
 	  <option>№</option>
 	  <option>Supply date</option> 
 	  <option>Comment</option>  
 	 </select>
-	 <select class="panelelement" style="width: 24%" onchange="Sort_and_serch()">
+	 <select id="sort_type" class="inpanel" onchange="Sort_and_serch()">
 	  <option>Non</option> 
 	  <option>Asc</option>
 	  <option>Desc</option>
@@ -35,7 +36,7 @@
 	
 	<div class="panelelement" style="width: 25%">
 	Filter by:
-	 <select class="panelelement" style="width: 60%">
+	 <select id="serch_type" class="inpanel">
 	  <option>All</option>
 	  <<option>Creation date</option>
 	  <option>№</option>
@@ -45,9 +46,9 @@
 	</div>
 	
 	
-	<div id="searchelement" class="panelelement right" style="width: 40%" align="center">Search:
-	 <input class="panelelement" style="width: 60%" >
-	 <button class="panelelement" style="width: 45px" onclick="Sort_and_serch()">
+	<div id="searchelement" class="panelelement" style="width: 40%">Search:
+	 <input id="serch_feeld" class="inpanel">
+	 <button class="inpanel" onclick="Sort_and_serch()">
 	 Go</button>
 	</div>
    </div>
@@ -56,7 +57,7 @@
     <thead>
 	 <tr>
 	  <td class="theader tdate">Create </td>
-	  <td class="theader" style="width: 15%">№ </td>
+	  <td class="theader" style="width: 12%">№ </td>
 	  <td class="theader tdate">Supply </td>
 	  <td class="theader tdcomment">Comment </td>
 	 </tr>
@@ -82,7 +83,7 @@
 	  <input name="date_created" class="formfeald" min="1700-01-01"
 	  max="2500-01-01" value="2022-01-01" type="date" required>
 	 </div>
-	 <div class="tdcomment">
+	 <div class="tdcomment panelelement">
 	  <label for="date_supply">Supplu Date:</label>
 	  <input name="date_supply" class="formfeald" min="1700-01-01"
 	  max="2500-01-01" value="2022-01-01" type="date" required>
