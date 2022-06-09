@@ -57,8 +57,7 @@ function Table_creator(arr_of_dokuments) {
 		
 		tbuton.setAttribute('onclick', `Asc_delation("/${(arr_of_dokuments[number])["id"]}")`);
 		
-		tbuton.style.backgroundColor = "red";
-		tbuton.classList.add("tablebutton");
+		tbuton.classList.add("tablebutton", "redbutton");
 		
 		sell.prepend(tbuton);
 	  } else {
@@ -74,4 +73,30 @@ function Asc_delation(id_delate) {
   Send_request("DELETE", start_url + id_delate, null,);
   Sort_and_serch(); //кажется не успевает
 }
+
+const theme_imgs = document.querySelectorAll('img');
+
+function Switch_theme(is_dark) {
+  
+  if (is_dark) {
+	thems_styles.media = 'all';
+    theme_imgs[1].style.display = "none";
+    theme_imgs[0].style.display = "block";
+  } else {
+	thems_styles.media = 'not all';
+	theme_imgs[0].style.display = "none";
+    theme_imgs[1].style.display = "block"; 
+  }
+}
+
+function Theme_switcher(is_dark) {
+  localStorage.dark_style = is_dark;
+  Switch_theme(is_dark);
+}
+
+Switch_theme(
+  (localStorage.dark_style == 'true') ? localStorage.dark_style : 
+  matchMedia('(prefers-color-scheme: dark)').matches);
+
+
 

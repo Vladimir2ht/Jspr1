@@ -4,12 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="main.css" rel="stylesheet" type="text/css"/>
+<link href="Dark_Theme.css" rel="stylesheet" type="text/css"
+media="(prefers-color-scheme: dark)"/>
+
+<script>
+<!-- Чтобы предотвратить вспышку белого при загрузке. -->
+  const thems_styles = document.querySelector('link[media]'); 
+
+  if ((localStorage.dark_style == 'true') ? localStorage.dark_style : 
+	matchMedia('(prefers-color-scheme: dark)').matches) {
+	thems_styles.media = 'all';}
+</script>
+
 </head>
 
 <body>
 	
-  <div class="header"><h3>Ivoices</h3></div>
-  
+  <div class="header"><h3>Ivoices</h3>
+   <img src="sun.png" onclick="Theme_switcher(false)"/>
+   <img src="moon.png" onclick="Theme_switcher(true)"/>
+  </div>
+  <!-- Возможно лучше сделать  картинку и менять ссылку, -->
+  <!-- так точно будет бымтрее первая загрузка. -->
   <div class="mainelement">
   Actions<br>
   <button onclick="Open_popup()">Add new</button>
@@ -52,7 +68,7 @@
 	 Go</button>
 	</div>
    </div>
-   
+   <!-- Можно вместо таблицы использовать reed. -->
    <table>
     <thead>
 	 <tr>
@@ -72,7 +88,7 @@
   <div id="popup_font">
    <div class="header"><h4>Create Invoice</h4></div>
    <div id="popup_content" class="mainelement">
-	<form id="forom" onsubmit="Post_request(event)">
+	<form id="forme" onsubmit="Post_request(event)">
 	 <div class="tdcomment panelelement">
 	  <label for="number">Number:</label>
 	  <input name="number" class="formfeald" onkeydown="Input_numbers(event)" 

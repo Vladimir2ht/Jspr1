@@ -27,13 +27,13 @@ function Open_popup(id_patch = null) {
 
 function Close_popup() {
   popup_body.style.display = "none";
-  forom.reset();
+  forme.reset();
 }
 
 function Post_request(event) {
   event.preventDefault();
     
-  let form_data = new FormData(forom);
+  let form_data = new FormData(forme);
   // Не получилось нормально отправить данные в виде FormData.
   // Да, до преобразований form_data выглядит как пустое.
   let doc_info = Object.fromEntries(form_data.entries());

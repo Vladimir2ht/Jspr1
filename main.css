@@ -1,11 +1,30 @@
+:root{
+	--body-color: #eeeef1;
+	--heder-color: #9696a0;
+	--mainelement-color: White;
+	--them-change-time: 0.4s;
+}/*Это не будет работать в IE*/
+
+img {
+	display: none;
+	/*Иначе при загрузке на выскакивает
+	2 картинки в первое мгновение.*/
+	height: 42px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
 body {
-	background-color: #eeeef1;
+	transition:	background-color var(--them-change-time);
+	background-color: var(--body-color);
 	font-family: Arial;
 	font-weight: bolder;
 }
 
 .mainelement {
-	background-color: White;
+	transition-duration: var(--them-change-time);
+	background-color: var(--mainelement-color);
 	margin: 30px;
 	padding: 20px; 
 	min-width: 700px;
@@ -16,18 +35,20 @@ h3, h4 {
 	}
 
 .header {
+	transition-duration: var(--them-change-time);
 	border-left: 4px solid Gainsboro;
-	background-color: #eeeef1;
-	color: #9696a0;
+	background-color: var(--body-color);
+	color: var(--heder-color);
 	padding-left: 20px;
 	margin: 30px;
+	position: relative;
 }
 
 .theader {
-	box-shadow: 3px 0px rgba(238, 238, 241, 1);
-	background-color: #eeeef1;
-	color: #9696a0;
-		
+	box-shadow: 3px 0px var(--body-color);
+	background-color: var(--body-color);
+	color: var(--heder-color);
+	transition-duration: var(--them-change-time);
 }
 
 .panelelement{
@@ -45,17 +66,22 @@ h3, h4 {
 }
 
 button {
-	background-color: #476fff;
 	padding: 8px 12px;
 	border-radius: 10px;
 	color: White;
 	border: 0px;
 	margin-top: 10px;
+	transition-duration: var(--them-change-time);
+	background:linear-gradient(#4949ff, #0000a0) border-box;
+}
 
+button:hover {
+	box-shadow: inset 0 0 13px 2px black;
 }
 
 table{
 	width:100%;
+	/* table-layout: fixed; */
 }
 
 tbody {
@@ -66,8 +92,14 @@ tbody {
 td {
 	padding: 15px;
 	vertical-align: top;
-	word-wrap: break-word;
-	max-width: 0px; /* для нормальной работы таблицы с длинными словами*/
+	max-width: 0px;
+	/* max-height: 30px; */
+	/* word-wrap: word-wrap; */
+	overflow: hidden;
+/*	display: block; */
+/*	overflow-y: hidden; */
+	text-overflow: ellipsis;
+	/* для нормальной работы таблицы с длинными словами*/
 }
 
 .right {
@@ -90,19 +122,22 @@ td {
 }
 
 .tdcomment {
-	width:48%;
-	/* overflow: hidden; */
-    /* text-overflow: ellipsis; */
+	width: 48%;
 }
 
 .tdate {
-	width:18%;
+	width: 18%;
 }
 
 .tablebutton {
 	float: right;
 	margin-left: 6px;
 	margin-top: 0px;
+}
+
+.redbutton {
+	background-color: red;
+	background:linear-gradient(red, #940000) border-box;
 }
 
 .formfeald {
@@ -128,7 +163,7 @@ input::placeholder{
 }
 
 #popup_font {
-	background-color: #eeeef1;
+	background-color: var(--body-color);
 	padding: 1px;
 	margin: 20%;
 	min-width: 400px;
@@ -178,15 +213,10 @@ textarea {
 	tbody {
 	  font-size: 10px;
 }
-
 	td {
 	  padding: 2px;
-	  min-height: 30px;
-	  overflow: hidden;
-      text-overflow: ellipsis;
 }
 	#panel {
-	  /* margin: 8px; */
 	  min-width: 320px;
 }
 	.panelelement{
@@ -213,17 +243,38 @@ textarea {
 }
 
 @media (max-width: 560px) {
- body { 
+	body { 
 	  min-width: 320px;
 	  margin: 0px;
 	  font-size: 10px;
 }
 	button {
-	font-size: 10px;
-	padding: 3px 4px;
-	border-radius: 5px;
-}
-.inpanel{
 	  font-size: 10px;
+	  padding: 3px 4px;
+	  border-radius: 5px;
+}
+	.inpanel{
+	  font-size: 10px;
+}
+	img {
+	  height: 33px;
+}
+}
+/* Стоит заменить формулами. */
+@media (min-width: 1200px) {
+	button {
+	  font-size: 20px;
+}
+	.inpanel{
+	  font-size: 20px;
+}
+	.tdate {
+	  width: 10%;
+}
+	body {
+	  font-size: 20px;
+}
+	tbody {
+	  font-size: 20px;
 }
 }
