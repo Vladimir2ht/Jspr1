@@ -5,24 +5,30 @@ const start_url = "http://localhost:3000/invoices";
 Send_request('GET')
 	.then(data => Table_creator(data))
 
-function Send_request(method, addres = start_url, poust = null){
+function Send_request(method, body = null, poust = null){
   
-  let response;
-  if (poust) {
-	response = fetch(addres, {
-	  method: method,
-	  headers: {
-		'Content-Type': 'application/json'
-	  },
-	  body: JSON.stringify(poust)
-	})
-  } else {
-	response = fetch(addres, {
-	  method: method,
-	})
-  };
-  return response.then(response => response.json())
-};
+  return new Promise((resolve, reject) => {
+	let xhr = new XMLHttpRequest();
+	if (body) {
+	  xhr.open( method, start_url + body);
+	} else {
+	  xhr.open( method, start_url );
+	};
+	xhr.responseType = 'json';
+	(method == "POST" || method == "PATCH") ? xhr.setRequestHeader('Content-Type', 'application/json') : null;
+	xhr.onload = () => {
+	  if (xhr.status < 400 ) {
+		resolve(xhr.response);
+	  } else {
+		reject(xhr.response);
+	  }
+	}
+	xhr.onerror = () => {
+	  reject(xhr.response);
+	};
+  xhr.send(JSON.stringify(poust));
+})
+}
 
 const colomns = ['date_created', 'number', 'date_supply', 'comment',];
 const list_of_doc = document.querySelector('tbody');

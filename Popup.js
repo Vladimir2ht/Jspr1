@@ -9,6 +9,12 @@ function On_Input() {
   this.style.height = (this.scrollHeight) + "px";
 }
 
+popup_body.addEventListener("click", function (click){
+  if (!click.target.closest('#popup_font')) {
+	Close_popup();
+  }
+});
+  
 const pop_head = document.querySelector("h4");
 let id_in_work
 
@@ -18,11 +24,6 @@ function Open_popup(id_patch = null) {
   popup_body.style.display = "block";
   comment_area.setAttribute("style", "height:" + "40px;");
   id_in_work = id_patch;
-  popup_body.addEventListener("click", function (click){
-	if (!click.target.closest('#popup_font')) {
-	  Close_popup();
-	}
-  });
 }
 
 function Close_popup() {
@@ -35,17 +36,15 @@ function Post_request(event) {
     
   let form_data = new FormData(forme);
   // Не получилось нормально отправить данные в виде FormData.
-  // Да, до преобразований form_data выглядит как пустое.
+  // Да, до преобразований form_data выглядит как пустой объект.
   let doc_info = Object.fromEntries(form_data.entries());
   let form_method;
   // Можно обойтись без новой переменной. Переприсваивание form_data
   // при далнейшей работе могло бы привести к запутыванию
   if (id_in_work) {
 	form_method = 'PATCH';
-	id_in_work = start_url + id_in_work;
   } else {
 	form_method = 'POST';
-	id_in_work = start_url;
   }
   Send_request(form_method, id_in_work, doc_info);	
 	//Sort не всегда срабатывает, и при такой записи, и B then.
