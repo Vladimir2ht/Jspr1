@@ -9,6 +9,12 @@ function On_Input() {
   this.style.height = (this.scrollHeight) + "px";
 }
 
+popup_body.addEventListener("click", function (click){
+  if (!click.target.closest('#popup_font')) {
+	Close_popup();
+  }
+});
+
 const pop_head = document.querySelector("h4");
 let id_in_work
 
@@ -18,11 +24,6 @@ function Open_popup(id_patch = null) {
   popup_body.style.display = "block";
   comment_area.setAttribute("style", "height:" + "40px;");
   id_in_work = id_patch;
-  popup_body.addEventListener("click", function (click){
-	if (!click.target.closest('#popup_font')) {
-	  Close_popup();
-	}
-  });
 }
 
 function Close_popup() {
