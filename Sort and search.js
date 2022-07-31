@@ -7,13 +7,14 @@ serch_feeld.addEventListener("keydown", ({key}) => {
   } 
 })
 
+const selects = document.querySelectorAll('select');
+
 function Need_sort(){
-  let selects = document.querySelectorAll('select')[1];
-  if (selects.selectedIndex != 0){Sort_and_serch()};
+  let select = selects[1];
+  if (select.selectedIndex != 0){Sort_and_serch()};
 }
 // Формирование строки запроса, НЕПОНЯТНО, УПРОСТИТЬ! Зато максимально быстро.
 function Sort_and_serch(){
-  const selects = document.querySelectorAll('select');
   if (selects[1].selectedIndex == 0) {return null};
   
   let request_string;
