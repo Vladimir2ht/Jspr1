@@ -36,35 +36,35 @@ function Table_creator(arr_of_dokuments) {
 	  let sell = document.createElement('td');
 	  
 	  if (i == 'date_created' || i == 'date_supply') {
-		let server_date = (arr_of_dokuments[number])[i]
-		let normal_date = [server_date.slice(0, 4),
-		server_date.slice(5, 7), server_date.slice(8)];
+			let server_date = (arr_of_dokuments[number])[i]
+			let normal_date = [server_date.slice(0, 4),
+			server_date.slice(5, 7), server_date.slice(8)];
 		
-		normal_date.reverse();
- 		sell.innerHTML = normal_date.join('.');
+			normal_date.reverse();
+ 			sell.innerHTML = normal_date.join('.');
 	  // Можно следующую проверку вынести отдельным if, так	будет 3 
 	  // лишних сравнения. Было выбрано дублировать сторку с innerHTML.
 	  } else if (i == 'comment'){
-		sell.innerHTML = (arr_of_dokuments[number])[i];
-		let tbuton = document.createElement('button');
+			sell.innerHTML = (arr_of_dokuments[number])[i];
+			let tbuton = document.createElement('button');
 
-		tbuton.innerHTML = 'Edit';
-		tbuton.classList.add("tablebutton");
-		tbuton.setAttribute('onclick', `Open_popup("/${(arr_of_dokuments[number])["id"]}")`);
-		sell.prepend(tbuton);
-		tbuton = document.createElement('button');
-		tbuton.innerHTML = 'Delete';
+			tbuton.innerHTML = 'Edit';
+			tbuton.classList.add("tablebutton");
+			tbuton.setAttribute('onclick', `Open_popup("/${(arr_of_dokuments[number])["id"]}")`);
+			sell.prepend(tbuton);
+			tbuton = document.createElement('button');
+			tbuton.innerHTML = 'Delete';
 		
-		tbuton.setAttribute('onclick', `Asc_delation("/${(arr_of_dokuments[number])["id"]}")`);
+			tbuton.setAttribute('onclick', `Asc_delation("/${(arr_of_dokuments[number])["id"]}")`);
 		
-		tbuton.classList.add("tablebutton", "redbutton");
+			tbuton.classList.add("tablebutton", "redbutton");
 		
-		sell.prepend(tbuton);
+			sell.prepend(tbuton);
 	  } else {
-		sell.innerHTML = (arr_of_dokuments[number])[i];
+			sell.innerHTML = (arr_of_dokuments[number])[i];
 	  };
 	  line.append(sell);
-	}
+	};
 	list_of_doc.append(line);
  } 	
 }

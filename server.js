@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+
 const page = fs.readFileSync('main.html', 'utf-8');
 const css = fs.readFileSync('main.css', 'utf-8');
 const css_dark = fs.readFileSync('Dark_Theme.css', 'utf-8');
@@ -10,6 +11,8 @@ const script_start = fs.readFileSync('start.js', 'utf-8');
 const script_sort = fs.readFileSync('Sort and search.js', 'utf-8');
 const script_popup = fs.readFileSync('Popup.js', 'utf-8');
 
+let db = fs.readFileSync('db.json', 'utf-8');
+db = JSON.stringify(JSON.parse(db).invoices);
 
 const requestListener = function (req, res) {
 	console.log(req.url);
@@ -42,14 +45,19 @@ const requestListener = function (req, res) {
 		case '/Popup.js':
 			res.end(script_popup);
 			break;
-	
-		default:
+		case '/ivo.js':
+			res.end(script_popup);
 			break;
+		case '/invoices':
+			res.end(db);
+			break;
+		// default:
+		// 	break;
 	}
 
 };
-
+// Рассмотреть другие варианты синтаксиса всего сервера.
 const server = http.createServer(requestListener);
-server.listen(3050, 'localhost', () => {
+server.listen(3000, 'localhost', () => {
     console.log(`Server is running on http://host:port`);
 });
