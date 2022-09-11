@@ -5,7 +5,7 @@ const start_url = "http://localhost:3000/invoices";
 Send_request('GET')
 	.then(data => Table_creator(data))
 
-function Send_request(method, addres = start_url, poust = null){
+function Send_request(method, addres = start_url, poust = null) {
   
   let response;
   if (poust) {
