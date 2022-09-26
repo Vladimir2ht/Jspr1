@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 exports.DELETE_function = function (url) {
-	let db = fs.readFileSync('db.json', 'utf-8');
+	let db = fs.readFileSync('./server/db.json', 'utf-8');
 	db = JSON.parse(db);
 	url = url.slice(10);
 	// Сложность N, возможно можно быстрее.

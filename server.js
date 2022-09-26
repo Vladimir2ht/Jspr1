@@ -1,8 +1,8 @@
 const http = require("http");
 const fs = require("fs");
-const GET_module = require('./GET_request.js');
-const DELETE_module = require('./DELETE_request.js');
-const P_module = require('./P_request.js');
+const GET_module = require('./server/GET_request.js');
+const DELETE_module = require('./server/DELETE_request.js');
+const P_module = require('./server/P_request.js');
 
 const page = fs.readFileSync('main.html', 'utf-8');
 const css = fs.readFileSync('main.css', 'utf-8');
@@ -14,11 +14,10 @@ const script_start = fs.readFileSync('start.js', 'utf-8');
 const script_sort = fs.readFileSync('Sort and search.js', 'utf-8');
 const script_popup = fs.readFileSync('Popup.js', 'utf-8');
 
-// console.log(GET_module);
 const requestListener = function (req, res) {
-	console.log(req.url);
-	console.log(req.method);
-	// console.log(req);
+	// console.log(req.url);
+	// console.log(req.method);
+
 	res.writeHead(200);
 	switch (req.method) {
 		case 'GET':

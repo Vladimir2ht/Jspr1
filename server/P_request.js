@@ -4,7 +4,7 @@ const fs = require("fs");
 const letters = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 exports.P_function = function (req, res) {
-	let db = fs.readFileSync('db.json', 'utf-8');
+	let db = fs.readFileSync('./server/db.json', 'utf-8');
 	db = JSON.parse(db);
     
 	let body = "";
@@ -24,7 +24,6 @@ exports.P_function = function (req, res) {
 			db.invoices.push(body);
 		} else {
 			let index = req.url.slice(10);
-			// console.log(req.url.slice(10));
 			body.id = index;
 			index = db.invoices.findIndex(invoice => invoice.id === index);
 			db.invoices[index] = body;

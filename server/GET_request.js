@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 exports.GET_function = function (url) {
-	let db = fs.readFileSync('db.json', 'utf-8');
+	let db = fs.readFileSync('./server/db.json', 'utf-8');
 	db = JSON.parse(db).invoices;
 	if (url === '/invoices') return JSON.stringify(db);
 	let url_obj = new URL(url, "http://localhost:3000");

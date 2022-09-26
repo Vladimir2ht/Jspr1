@@ -22,99 +22,96 @@ media="(prefers-color-scheme: dark)"/>
 <body>
 	
   <div class="header"><h3>Ivoices</h3>
-   <img src="sun.png" onclick="Theme_switcher(false)"/>
-   <img src="moon.png" onclick="Theme_switcher(true)"/>
+  	<img src="sun.png" onclick="Theme_switcher(false)"/>
+  	<img src="moon.png" onclick="Theme_switcher(true)"/>
   </div>
-  <!-- Возможно лучше сделать  картинку и менять ссылку, -->
-  <!-- так точно будет бымтрее первая загрузка. -->
+  <!-- Возможно лучше сделать картинку и менять ссылку, -->
+  <!-- так точно будет быстрее первая загрузка. -->
   <div class="mainelement">
-  Actions<br>
-  <button onclick="Open_popup()">Add new</button>
+  	Actions<br>
+  	<button onclick="Open_popup()">Add new</button>
   </div>
 	
   <div class="mainelement">
-  Invoices<br>
+  	Invoices<br>
   
-   <div id="panel">
-	<div class="panelelement" style="width: 32%">
-	 Order by:
-	 <select id="sort_where" class="inpanel" onchange="Need_sort()">
-	  <option>Creation date</option>
-	  <option>№</option>
-	  <option>Supply date</option> 
-	  <option>Comment</option>  
-	 </select>
-	 <select id="sort_type" class="inpanel" onchange="Sort_and_serch()">
-	  <option>Non</option> 
-	  <option>Asc</option>
-	  <option>Desc</option>
-	 </select>
-	</div>
+  	<div id="panel">
+			<div class="panelelement" style="width: 32%">
+				Order by:
+				<select id="sort_where" class="inpanel" onchange="Need_sort()">
+	  			<option>Creation date</option>
+				  <option>№</option>
+					<option>Supply date</option> 
+				  <option>Comment</option>  
+				</select>
+				<select id="sort_type" class="inpanel" onchange="Sort_and_serch()">
+					<option>Non</option> 
+					<option>Asc</option>
+					<option>Desc</option>
+				</select>
+			</div>
 	
-	<div class="panelelement" style="width: 25%">
-	Filter by:
-	 <select id="serch_type" class="inpanel">
-	  <option>All</option>
-	  <option>Creation date</option>
-	  <option>№</option>
-	  <option>Supply date</option> 
-	  <option>Comment</option>
-	 </select>
-	</div>
+			<div class="panelelement" style="width: 25%">
+				Filter by:
+				<select id="serch_type" class="inpanel">
+	  			<option>All</option>
+				  <option>Creation date</option>
+	  			<option>№</option>
+	  			<option>Supply date</option> 
+	  			<option>Comment</option>
+				</select>
+			</div>
 	
-	
-	<div id="searchelement" class="panelelement" style="width: 40%">Search:
-	 <input id="serch_feeld" class="inpanel">
-	 <button class="inpanel" onclick="Sort_and_serch()">
-	 Go</button>
-	</div>
-   </div>
-   <!-- Можно вместо таблицы использовать reed. -->
-   <table>
-    <thead>
-	 <tr>
-	  <td class="theader tdate">Create </td>
-	  <td class="theader" style="width: 12%">№ </td>
-	  <td class="theader tdate">Supply </td>
-	  <td class="theader tdcomment">Comment </td>
-	 </tr>
-	</thead>
-	<tbody>
-	</tbody> 
-   </table>
+			<div id="searchelement" class="panelelement" style="width: 40%">Search:
+				<input id="serch_feeld" class="inpanel">
+				<button class="inpanel" onclick="Sort_and_serch()">Go</button>
+			</div>
+		</div>
+   <!-- Можно вместо таблицы использовать greed. -->
+		<table>
+    	<thead>
+				<tr>
+					<td class="theader tdate">Create </td>
+					<td class="theader" style="width: 12%">№ </td>
+					<td class="theader tdate">Supply </td>
+					<td class="theader tdcomment">Comment </td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody> 
+  	</table>
   </div>
 
-
-  <div id="popup_body">
-  <div id="popup_font">
-   <div class="header"><h4>Create Invoice</h4></div>
-   <div id="popup_content" class="mainelement">
-	<form id="forme" onsubmit="Post_request(event)">
-	 <div class="tdcomment panelelement">
-	  <label for="number">Number:</label>
-	  <input name="number" class="formfeald" onkeydown="Input_numbers(event)" 
-	  type="text" maxlength="60" placeholder="Write a number" required>
-	 </div>
-	 <div class="tdcomment panelelement">
-	  <label for="date_created">Invoice Datne:</label>
-	  <input name="date_created" class="formfeald" type="date"
-	  max="2500-01-01" min="1700-01-01" value="2022-01-01" required>
-	 </div>
-	 <div class="tdcomment panelelement">
-	  <label for="date_supply">Supplu Date:</label>
-	  <input name="date_supply" class="formfeald" type="date"
-	  max="2500-01-01" min="1700-01-01" value="2022-01-01" required>
-	 </div>
-	 <div>
-	  <label for="comment">Comment:</label>
-	  <textarea name="comment" maxlength="666" style="width: 100%" required></textarea>
-	 </div>
-	<button class="right">Save</button>
-	</form>
-	</div>
+	
+	<div id="popup_body">
+		<div id="popup_font">
+  		<div class="header"><h4>Create Invoice</h4></div>
+  		<div id="popup_content" class="mainelement">
+				<form id="forme" onsubmit="Post_request(event)">
+					<div class="tdcomment panelelement">
+	  				<label for="number">Number:</label>
+	  				<input name="number" class="formfeald" onkeydown="Input_numbers(event)" 
+	  					type="text" maxlength="60" placeholder="Write a number" required>
+					</div>
+					<div class="tdcomment panelelement">
+	  				<label for="date_created">Invoice Datne:</label>
+	  				<input name="date_created" class="formfeald" type="date"
+	  					max="2500-01-01" min="1700-01-01" value="2022-01-01" required>
+	 				</div>
+					<div class="tdcomment panelelement">
+	  				<label for="date_supply">Supplu Date:</label>
+	  				<input name="date_supply" class="formfeald" type="date"
+	  					max="2500-01-01" min="1700-01-01" value="2022-01-01" required>
+					</div>
+					<div>
+						<label for="comment">Comment:</label>
+						<textarea name="comment" maxlength="666" style="width: 100%" required></textarea>
+					</div>
+					<button class="right">Save</button>
+				</form>
+			</div>
+		</div>
   </div>
-  </div>
-
   
   <script src="start.js"></script>
   <script src="Sort and search.js"></script>
