@@ -48,9 +48,8 @@ function Post_request(event) {
 	form_method = 'POST';
 	id_in_work = start_url;
   }
-  Send_request(form_method, id_in_work, doc_info);	
-	//Sort не всегда срабатывает, и при такой записи, и B then.
-  Sort_and_serch();
+  Send_request(form_method, id_in_work, doc_info)
+    .then(res => Sort_and_serch() );
   Close_popup();
 }
 

@@ -52,7 +52,6 @@ exports.GET_function = function (url) {
 
 		if (order === "desc") db.reverse();
 	}
-	console.log(db);
 	return JSON.stringify(db);
 };
 

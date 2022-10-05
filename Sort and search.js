@@ -2,8 +2,8 @@
 // const serch_object = document.querySelector("input");
 
 serch_feeld.addEventListener("keydown", ({key}) => {
-  if (key === "Enter"){   // Handle press
-	Sort_and_serch();
+  if (key === "Enter") {  // Handle press
+	  Sort_and_serch();
   } 
 })
 
@@ -17,25 +17,24 @@ function Need_sort(){
 function Sort_and_serch(){
   let url = new URL(start_url);
   
-  if (serch_feeld.value !== '' && selects[2].selectedIndex != 0){
-	url.searchParams.append(`${colomns[selects[2].selectedIndex - 1]}` + '_like', serch_feeld.value)
+  if (serch_feeld.value !== '' && selects[2].selectedIndex != 0) {
+  	url.searchParams.append(`${colomns[selects[2].selectedIndex - 1]}` + '_like', serch_feeld.value)
 	}
   if (selects[1].selectedIndex != 0) {
-	url.searchParams.append('_sort', colomns[selects[0].selectedIndex]);
-	url.searchParams.append('_order', ((selects[1].selectedIndex == 1) ? 'asc' : 'desc'));
+  	url.searchParams.append('_sort', colomns[selects[0].selectedIndex]);
+	  url.searchParams.append('_order', ((selects[1].selectedIndex == 1) ? 'asc' : 'desc'));
   }
-  if (serch_feeld.value !== '' && selects[2].selectedIndex == 0){
+  if (serch_feeld.value !== '' && selects[2].selectedIndex == 0) {
     url.searchParams.append('q', serch_feeld.value);
   }
   
   Table_deletor();
   Send_request('GET', url)
-	.then(data => Table_creator(data))  
+	  .then(data => Table_creator(data));
 }
 
 const table_body = document.querySelector('tbody');
-// Имеет смысл функции заасинхронить и поставить выжидание,
-// иначе DELETE и PUTCH не успевают примениться до Sort.
+
 function Table_deletor() {
   table_body.innerHTML = "";
 }

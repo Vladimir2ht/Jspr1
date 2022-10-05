@@ -1,7 +1,6 @@
 
 const fs = require("fs");
 
-
 exports.DELETE_function = function (url) {
 	let db = fs.readFileSync('./server/db.json', 'utf-8');
 	db = JSON.parse(db);
@@ -9,7 +8,7 @@ exports.DELETE_function = function (url) {
 	// Сложность N, возможно можно быстрее.
 	db.invoices = db.invoices.filter(invoice => invoice.id !== url);
 	// if (db.invoices.length !== length - 1) return console.log("Error id");		
-	fs.writeFileSync('db.json', JSON.stringify(db));
+	fs.writeFileSync('./server/db.json', JSON.stringify(db));
 
 	return JSON.stringify({});
 	

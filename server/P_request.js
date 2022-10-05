@@ -30,7 +30,7 @@ exports.P_function = function (req, res) {
 			if (index < 0) return console.log("Error id");
 		}
 
-		fs.writeFileSync('db.json', JSON.stringify(db));
+		fs.writeFileSync('./server/db.json', JSON.stringify(db));
 
 		res.end(JSON.stringify(body));
 	});
