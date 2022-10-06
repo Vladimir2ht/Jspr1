@@ -76,8 +76,8 @@ function Table_creator(arr_of_dokuments) {
 }
 
 function Asc_delation(id_delate) {
-  Send_request("DELETE", start_url + id_delate, null,);
-  Sort_and_serch(); //кажется не успевает
+  Send_request("DELETE", id_delate, null,)
+		.then(res => Sort_and_serch());
 }
 
 const theme_imgs = document.querySelectorAll('img');
@@ -102,7 +102,8 @@ function Theme_switcher(is_dark) {
 
 Switch_theme(
   (localStorage.dark_style == 'true') ? localStorage.dark_style : 
-  matchMedia('(prefers-color-scheme: dark)').matches);
+	matchMedia('(prefers-color-scheme: dark)').matches
+);
 
 
 

@@ -46,17 +46,16 @@ function Post_request(event) {
   } else {
 	form_method = 'POST';
   }
-  Send_request(form_method, id_in_work, doc_info);	
-	//Sort не всегда срабатывает, и при такой записи, и B then.
-  Sort_and_serch();
-  Close_popup();
+	Send_request(form_method, id_in_work, doc_info)
+		.then(res => Sort_and_serch());
+	Close_popup();
 }
 
 function Input_numbers(event) {
   if ( event.key == 'Backspace' || event.key == 'Delete' || event.key == 'Tab'
-    || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))){
-  } else{
-	event.preventDefault();
+		|| event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))) {
+  } else {
+		event.preventDefault();
   };
 };
 
