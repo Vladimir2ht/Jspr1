@@ -9,9 +9,9 @@ function On_Input() {
   this.style.height = (this.scrollHeight) + "px";
 }
 
-popup_body.addEventListener("click", function (click){
+popup_body.addEventListener("click", function (click) {
   if (!click.target.closest('#popup_font')) {
-	Close_popup();
+	  Close_popup();
   }
 });
 
@@ -42,23 +42,22 @@ function Post_request(event) {
   // Можно обойтись без новой переменной. Переприсваивание form_data
   // при далнейшей работе могло бы привести к запутыванию
   if (id_in_work) {
-	form_method = 'PATCH';
-	id_in_work = start_url + id_in_work;
+  	form_method = 'PATCH';
+	  id_in_work = start_url + id_in_work;
   } else {
-	form_method = 'POST';
-	id_in_work = start_url;
+	  form_method = 'POST';
+	  id_in_work = start_url;
   }
-  Send_request(form_method, id_in_work, doc_info);	
-	//Sort не всегда срабатывает, и при такой записи, и B then.
-  Sort_and_serch();
+  Send_request(form_method, id_in_work, doc_info)
+    .then(res => Sort_and_serch());
   Close_popup();
 }
 
 function Input_numbers(event) {
   if ( event.key == 'Backspace' || event.key == 'Delete' || event.key == 'Tab'
-    || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))){
-  } else{
-	event.preventDefault();
+    || event.key == 'ArrowLeft' || event.key == 'ArrowRight' || (/^[0-9]$/.test(event.key))) {
+  } else {
+	  event.preventDefault();
   };
 };
 
